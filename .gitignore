@@ -23,6 +23,7 @@ logs/
 *.temp
 *.bak
 *.swp
+api.http
 
 # Ignore dependency directories (if applicable)
 node_modules/

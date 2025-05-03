@@ -1,0 +1,33 @@
+# Ignore sensitive configuration files
+appsettings.json
+appsettings.Development.json
+.env
+
+# Ignore build and generated files
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# Ignore dependency directories (if applicable)
+node_modules/
+packages/
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db

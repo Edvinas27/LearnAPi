@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
 using api.Extensions.Mappers;
+using api.Helpers;
 using api.Interfaces;
 using api.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -14,9 +15,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
-    //automatically turns on modelstate.isvalid(check if models are all true)
     [ApiController]
-    //If class was HelloController it would be api/Hello...
     [Route("api/[Controller]")]
     public class StockController : ControllerBase
     {
@@ -27,17 +26,16 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
         {
 
-            var stocks = await _stockRepo.GetAllAsync();
+            var stocks = await _stockRepo.GetAllAsync(query);
             var stockDto = stocks.Select(s => s.ToStockDto());
 
             return Ok(stockDto);
         }
 
         [HttpGet("{id:guid}")]
-        //[FromRoute] not needed here since HttpGet("{id}") matches name of Guid, but more official
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var stock = await _stockRepo.GetByIdAsync(id);
@@ -51,7 +49,6 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        //tells to look for CreateStockRequestDto in JSON BODY
         public async Task<IActionResult> AddStock([FromBody] CreateStockRequestDto stockDto)
         {
             var stockModel = stockDto.ToStockFromCreateDto();

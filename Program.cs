@@ -1,7 +1,3 @@
-// Microsoft.EntityFrameworkCore.SqlServer
-// Microsoft.EntityFrameworkCore.Tools
-// Microsoft.EntityFrameworkCore.Design
-
 using api.Data;
 using api.Interfaces;
 using api.Repository;
